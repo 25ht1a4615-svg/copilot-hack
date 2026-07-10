@@ -1,0 +1,42 @@
+{
+  "mood_preferences": {
+    "focus_brightness": 100,
+    "relax_brightness": 50,
+    "energetic_brightness": 100,
+    "creative_brightness": 90,
+    "calm_brightness": 40
+  },
+  "time_based_settings": {
+    "morning": {
+      "start_hour": 5,
+      "default_mood": "energetic"
+    },
+    "work": {
+      "start_hour": 12,
+      "default_mood": "focused"
+    },
+    "evening": {
+      "start_hour": 17,
+      "default_mood": "relaxed"
+    },
+    "night": {
+      "start_hour": 21,
+      "default_mood": "calm",
+      "max_brightness": 20
+    }
+  },
+  "voice_settings": {
+    "voice_enabled": true,
+    "microphone_sensitivity": 0.5,
+    "recognition_language": "en-US",
+    "api_fallback": true
+  },
+  "lighting": {
+    "auto_brightness": true,
+    "update_interval_seconds": 60,
+    "transition_smooth": true,
+    "transition_speed": 0.5
+  },
+  "rgb_backend": "auto",
+  "log_level": "info"
+}
