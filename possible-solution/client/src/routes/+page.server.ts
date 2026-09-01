@@ -21,9 +21,34 @@ export const actions = {
     const day_of_week = data.get('day');
     const airport_id = data.get('airport');
 
-    // make request to server
-    const res = await fetch(`http://localhost:5000/predict?day_of_week=${day_of_week}&airport_id=${airport_id}`)
-    const result = await res.json();
-    return {result};
+    // Validate inputs before making request
+    if (!day_of_week || !airport_id) {
+      return { error: 'Missing required fields' };
+    }
+
+    // Properly encode URL parameters to prevent injection
+    const params = new URLSearchParams({
+      day_of_week: String(day_of_week),
+      airport_id: String(airport_id)
+    });
+
+    try {
+      // make request to server
+      const res = await fetch(`http://localhost:5000/predict?${params.toString()}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        return { error: errorData.error || 'Prediction failed' };
+      }
+      
+      const result = await res.json();
+      return {result};
+    } catch (err) {
+      console.error('Fetch error:', err);
+      return { error: 'Failed to fetch prediction' };
+    }
   }
 }
