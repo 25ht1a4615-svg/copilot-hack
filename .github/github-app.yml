@@ -1,0 +1,4 @@
+automation:
+  auto_issue_session: false
+  remote_control: true
+  
